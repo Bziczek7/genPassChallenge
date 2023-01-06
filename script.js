@@ -96,6 +96,15 @@ let passOptions = {
   specialChar: false
 };
 
+let passArray = [];
+let passwd;
+
+
+
+function generatePassArray(arrayPart) {
+  passArray = passArray.concat(arrayPart)
+}
+
 
 // Function to prompt user for password options
 function getPasswordOptions() {
@@ -107,49 +116,53 @@ function getPasswordOptions() {
 // let numeric = false;
 // let specialChar = false;
 
-let passLengthAnswer = prompt("Please indicate the length of the password (between 10 and 64 characters)", 10);
-let lowerCaseAnswer = prompt("Would you like for the password to include lower case characters? (Please answer yes or no)");
-let upperCaseAnswer = prompt("Would you like for the password to include upper case characters? (Please answer yes or no)");
-let numericAnswer = prompt("Would you like for the password to include numeric characters? (Please answer yes or no)");
-let specialCharAnswer = prompt("Would you like for the password to include special characters? (Please answer yes or no)");
+    let passLengthAnswer = prompt("Please indicate the length of the password (between 10 and 64 characters)", 10);
+    let lowerCaseAnswer = prompt("Would you like for the password to include lower case characters? (Please answer yes or no)");
+    let upperCaseAnswer = prompt("Would you like for the password to include upper case characters? (Please answer yes or no)");
+    let numericAnswer = prompt("Would you like for the password to include numeric characters? (Please answer yes or no)");
+    let specialCharAnswer = prompt("Would you like for the password to include special characters? (Please answer yes or no)");
 
-if (passLengthAnswer > 10 && passLengthAnswer < 64) {
-  passOptions.passLength = passLengthAnswer;
-} else {
-  alert("Password length does not match our requirements");
-}
+    if (passLengthAnswer > 10 && passLengthAnswer < 64) {
+      passOptions.passLength = passLengthAnswer;
+    } else {
+      alert("Password length does not match our requirements");
+    }
 
-if (lowerCaseAnswer.toLowerCase() == "yes"){
-  passOptions.lowerCase = true;
-} else if(lowerCaseAnswer.toLowerCase() == "no"){
-  passOptions.lowerCase = false;
-} else {
-  alert("Password lower case option entered incorrectly");
-}
+    if (lowerCaseAnswer.toLowerCase() == "yes"){
+      passOptions.lowerCase = true;
+      generatePassArray(lowerCasedCharacters);
+    } else if(lowerCaseAnswer.toLowerCase() == "no"){
+      passOptions.lowerCase = false;
+    } else {
+      alert("Password lower case option entered incorrectly");
+    }
 
-if (upperCaseAnswer.toLowerCase() == "yes"){
-  passOptions.upperCase = true;
-} else if(upperCaseAnswer.toLowerCase() == "no"){
-  passOptions.upperCase = false;
-} else {
-  alert("Password upper case option entered incorrectly");
-}
+    if (upperCaseAnswer.toLowerCase() == "yes"){
+      passOptions.upperCase = true;
+      generatePassArray(upperCasedCharacters);
+    } else if(upperCaseAnswer.toLowerCase() == "no"){
+      passOptions.upperCase = false;
+    } else {
+      alert("Password upper case option entered incorrectly");
+    }
 
-if (numericAnswer.toLowerCase() == "yes"){
-  passOptions.numeric = true;
-} else if(numericAnswer.toLowerCase() == "no"){
-  passOptions.numeric = false;
-} else {
-  alert("Password numeric case option entered incorrectly");
-}
+    if (numericAnswer.toLowerCase() == "yes"){
+      passOptions.numeric = true;
+      generatePassArray(numericCharacters);
+    } else if(numericAnswer.toLowerCase() == "no"){
+      passOptions.numeric = false;
+    } else {
+      alert("Password numeric case option entered incorrectly");
+    }
 
-if (specialCharAnswer.toLowerCase() == "yes"){
-  passOptions.specialChar = true;
-} else if(specialCharAnswer.toLowerCase() == "no"){
-  passOptions.specialChar = false;
-} else {
-  alert("Password special Character case option entered incorrectly");
-}
+    if (specialCharAnswer.toLowerCase() == "yes"){
+      passOptions.specialChar = true;
+      generatePassArray(specialCharacters);
+    } else if(specialCharAnswer.toLowerCase() == "no"){
+      passOptions.specialChar = false;
+    } else {
+      alert("Password special Character case option entered incorrectly");
+    }
 
 }
 
