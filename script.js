@@ -97,7 +97,12 @@ let passOptions = {
 };
 
 let passArray = [];
-let passwd;
+
+
+
+////////////////////////////////////////
+
+getPasswordOptions();
 
 
 
@@ -122,7 +127,7 @@ function getPasswordOptions() {
     let numericAnswer = prompt("Would you like for the password to include numeric characters? (Please answer yes or no)");
     let specialCharAnswer = prompt("Would you like for the password to include special characters? (Please answer yes or no)");
 
-    if (passLengthAnswer > 10 && passLengthAnswer < 64) {
+    if (passLengthAnswer >= 10 && passLengthAnswer <= 64) {
       passOptions.passLength = passLengthAnswer;
     } else {
       alert("Password length does not match our requirements");
@@ -164,17 +169,48 @@ function getPasswordOptions() {
       alert("Password special Character case option entered incorrectly");
     }
 
+
+    if (passOptions.lowerCase === false && passOptions.upperCase === false && passOptions.numeric === false && passOptions.specialChar === false){
+      alert("You have not selected the type of characters to be used for password generation please try again");
+    }
+
 }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
 
+
+  let randomIndex = Math.floor(Math.random()*arr.length);
+
+  return randomIndex;
 }
 
 // Function to generate password with user input
 function generatePassword() {
 
+
+  let passwd = "";
+
+  for (let i = 0; i < passOptions.passLength; i++){
+   
+    passwd += passArray[getRandom(passArray)];
+    
+   
+  }
+  return passwd;
 }
+
+// function generatePassword() {
+
+//   for (let i = 0; i < passOptions.passLength; i++){
+   
+//     passwdSingle = passwdSingle + passArray[getRandom(passArray)];
+    
+//     return passwdSingle;
+//   }
+
+// }
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
